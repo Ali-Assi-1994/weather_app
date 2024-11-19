@@ -24,8 +24,8 @@ class DaysHorizontalListWidget extends ConsumerWidget {
           itemBuilder: (context, index) {
             return DaysHorizontalItemBuilder(
               dayForecast: uniqueDayForecasts.elementAt(index),
-              onTap: () => ref.read(selectedDayForecastIndex.notifier).state = index,
-              isSelected: index == ref.watch(selectedDayForecastIndex),
+              onTap: () => ref.read(selectedDayForecastProvider.notifier).state = uniqueDayForecasts.elementAt(index),
+              isSelected: uniqueDayForecasts.elementAt(index) == ref.watch(selectedDayForecastProvider),
             );
           },
         ),

@@ -144,9 +144,9 @@ class LottieAssetBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final DayForecast? selectedDayForecast = ref.watch(selectedDayForecastProvider);
+    final String? iconID = ref.watch(selectedDayForecastProvider.select((data) => data?.weather.first.icon));
 
-    if (selectedDayForecast == null) {
+    if (iconID == null) {
       return const SizedBox.shrink();
     }
 
@@ -162,8 +162,8 @@ class LottieAssetBuilder extends ConsumerWidget {
         );
       },
       child: Lottie.asset(
-        selectedDayForecast.weather.first.icon.getWeatherLottieAsset,
-        key: ValueKey<String>(selectedDayForecast.weather.first.icon),
+        iconID.getWeatherLottieAsset,
+        key: ValueKey<String>(iconID),
       ),
     );
   }

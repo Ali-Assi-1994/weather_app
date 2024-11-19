@@ -13,12 +13,9 @@ final weatherDataProvider = FutureProvider<WeatherModel>((ref) async {
   return model;
 });
 
-final selectedDayForecastIndex = StateProvider<int>((ref) => 0);
-
-final selectedDayForecastProvider = Provider<DayForecast?>((ref) {
+final selectedDayForecastProvider = StateProvider<DayForecast?>((ref) {
   final weatherData = ref.watch(weatherDataProvider).value;
-  final index = ref.watch(selectedDayForecastIndex);
-  return weatherData?.days.elementAt(index);
+  return weatherData?.days.elementAt(0);
 });
 
 enum TemperatureUnit { celsius, fahrenheit }

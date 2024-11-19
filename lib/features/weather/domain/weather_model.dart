@@ -244,16 +244,21 @@ class EnumValues<T> {
 }
 
 extension UniqueForecastDays on List<DayForecast> {
+  /// Returns a list of DayForecasts with the first occurrence of each unique weekday,
+  /// sorted by date in ascending order before extracting the first occurrence.
   List<DayForecast> get getUniqueWeekdays {
-    // Use a Set to track the days already added (avoiding duplicates)
-    final Set<int> uniqueWeekdays = {};
+    // Sort the list by date (ascending).
+    final sortedForecasts = [...this]..sort((a, b) => a.dtTxt.compareTo(b.dtTxt));
+
+    // Use a Set to track weekdays already added (to avoid duplicates).
+    final Set<int> seenWeekdays = {};
     final List<DayForecast> uniqueDayForecasts = [];
 
-    for (var forecast in this) {
-      // Check if the weekday is already in the Set
+    for (var forecast in sortedForecasts) {
       final weekday = forecast.dtTxt.weekday;
-      if (!uniqueWeekdays.contains(weekday)) {
-        uniqueWeekdays.add(weekday);
+
+      // If this is the first occurrence of the weekday, add it to the list.
+      if (seenWeekdays.add(weekday)) {
         uniqueDayForecasts.add(forecast);
       }
     }
