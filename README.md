@@ -32,6 +32,12 @@ The application satisfies the following acceptance criteria:
 
 ## Setup and Installation
 
+**Flutter SDK** is required to run the mobile app. **Flutter 3.24.3 • channel stable** has been used for this app, with **Dart 3.5.3**
+
+   - Tested on simulators: 
+      **iPhone 16 Pro Max (iOS 18.1)**
+      **iPhone 15 (iOS 17.5)**
+
 To run the project, follow these steps:
 
 1. **Clone the repository**.
